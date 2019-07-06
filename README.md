@@ -30,3 +30,20 @@ along with a `song` instance.
 7. Make sure all tests pass!
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/diy-nested-resources-lab' title='Modifying Nested Resources Lab'>Modifying Nested Resources Lab</a> on Learn.co and start learning to code for free.</p>
+
+
+subject { helper }
+
+it { should respond_to(:display_artist).with(1).argument }
+it { should respond_to(:artist_select).with(2).arguments }
+
+it "displays a link to edit the song if artist empty" do
+  song = Song.create(title: "Bohemian Rhapsody")
+  expect(helper.display_artist(song)).to include(edit_song_path(song))
+  expect(helper.display_artist(song)).to include("Add Artist")
+end
+
+it "displays a link to the artist page if artist not empty" do
+  expect(helper.display_artist(@song)).to include(artist_path(@artist))
+  expect(helper.display_artist(@song)).to include(@artist.name)
+end
