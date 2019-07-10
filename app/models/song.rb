@@ -1,5 +1,6 @@
 class Song < ActiveRecord::Base
   belongs_to :artist
+  accepts_nested_attributes_for :artist
 
   def artist_name
     self.try(:artist).try(:name)
