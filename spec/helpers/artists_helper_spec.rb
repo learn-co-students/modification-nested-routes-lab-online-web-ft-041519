@@ -7,7 +7,7 @@ RSpec.describe ArtistsHelper, type: :helper do
     Song.destroy_all
     @artist = Artist.create!(name: "Daft Punk")
     @song = @artist.songs.create!(title: "The Grid")
-  end
+  end   
 
   subject { helper }
 
